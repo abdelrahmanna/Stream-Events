@@ -101,10 +101,10 @@ export default createStore({
             axios
                 .patch(
                     "/api/events/" + event.id,
-                    { read: !event.read },
+                    { isRead: !event.isRead },
                 )
                 .then((response) => {
-                    state.events[index].read = !event.read;
+                    state.events[index].isRead = !event.isRead;
                 });
         },
     },
