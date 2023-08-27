@@ -1,4 +1,7 @@
 window._ = require('lodash');
+import { createApp } from 'vue';
+import store from "./store";
+import app from "./components/app.vue";
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6,9 +9,25 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+// get crf token from meta tag
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
+    'meta[name="csrf-token"]'
+).content
+
+// get access token from cookie
+// window.axios.defaults.headers.common['access_token'] = response.data.access_token;
+
+// create vue app
+const appInstance = createApp({});
+appInstance.use(store);
+appInstance.component('app', app);
+appInstance.mount('#app');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
