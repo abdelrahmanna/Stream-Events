@@ -70,11 +70,7 @@ export default createStore({
                 });
         },
         getMerchSales({ commit }) {
-            axios.get('/api/merchSales/revenue', {
-                headers: {
-                    Authorization: "Bearer " + state.userToken,
-                },
-            })
+            axios.get('/api/merch-sales/revenue')
                 .then(response => {
                     commit('setMerchSales', response.data);
                 })
@@ -92,7 +88,7 @@ export default createStore({
                 });
         },
         getTopItems({ commit }) {
-            axios.get('/api/merchSales/popular')
+            axios.get('/api/merch-sales/top')
                 .then(response => {
                     commit('setTopItems', response.data);
                 })
@@ -105,10 +101,10 @@ export default createStore({
             axios
                 .patch(
                     "/api/events/" + event.id,
-                    { read: !event.read },
+                    { isRead: !event.isRead },
                 )
                 .then((response) => {
-                    state.events[index].read = !event.read;
+                    state.events[index].isRead = !event.isRead;
                 });
         },
     },

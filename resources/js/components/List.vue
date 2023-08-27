@@ -5,7 +5,7 @@
       <div class="list-container">
         <ListItem :event="event" class="list-item" />
         <button @click="updateEvent({event, index})">
-          {{ event.read ? "unread" : "read" }}
+          {{ event.isRead ? "unread" : "read" }}
         </button>
       </div>
     </template>
