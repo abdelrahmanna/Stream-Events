@@ -70,11 +70,7 @@ export default createStore({
                 });
         },
         getMerchSales({ commit }) {
-            axios.get('/api/merchSales/revenue', {
-                headers: {
-                    Authorization: "Bearer " + state.userToken,
-                },
-            })
+            axios.get('/api/merchSales/revenue')
                 .then(response => {
                     commit('setMerchSales', response.data);
                 })
