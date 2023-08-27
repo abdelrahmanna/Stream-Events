@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+// create login route view
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+// create third party ath route group
+Route::prefix('auth/{provider}')->group(function () {
+    Route::get('/redirect', [SocialiteController::class, 'redirect'])->name('auth.redirect');
+    Route::get('/callback', [SocialiteController::class, 'callback'])->name('auth.callback');
 });
