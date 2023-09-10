@@ -70,7 +70,7 @@ export default createStore({
                 });
         },
         getMerchSales({ commit }) {
-            axios.get('/api/merchSales/revenue')
+            axios.get('/api/merch-sales/revenue')
                 .then(response => {
                     commit('setMerchSales', response.data);
                 })
@@ -88,7 +88,7 @@ export default createStore({
                 });
         },
         getTopItems({ commit }) {
-            axios.get('/api/merchSales/popular')
+            axios.get('/api/merch-sales/top')
                 .then(response => {
                     commit('setTopItems', response.data);
                 })

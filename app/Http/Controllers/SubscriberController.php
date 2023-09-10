@@ -19,9 +19,9 @@ class SubscriberController extends Controller
 
         // get subscriber revenue since n days ago
         $subscriberRevenue = Subscriber::join(
-            "superscription_tiers",
-            "superscription_tiers.id",
-            "subscribers.superscription_tier_id"
+            "subscription_tiers",
+            "subscription_tiers.id",
+            "subscribers.subscription_tier_id"
         )
             ->where(
                 "subscribers.created_at",

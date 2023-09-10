@@ -19,7 +19,7 @@ class MerchSaleController extends Controller
 
         // get top n merch items
         $topMerchItems = MerchSale::join("merches", "merches.id", "merch_sales.merch_id")
-            ->selectRaw("merches.name, sum(merch_sales.quantity) as total")
+            ->selectRaw("merches.name, sum(merch_sales.amount) as total")
             ->groupBy("merch_sales.merch_id")
             ->orderByDesc("total")
             ->limit($numberOfItems)
