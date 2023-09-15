@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Donation extends Model
 {
@@ -20,10 +20,10 @@ class Donation extends Model
     /**
      * Get all of the donation's events.
      * 
-     * @return MorphMany
+     * @return MorphOne
      */
-    public function events(): MorphMany
+    public function events(): MorphOne
     {
-        return $this->morphMany(Event::class, "eventable");
+        return $this->morphOne(Event::class, "eventable");
     }
 }

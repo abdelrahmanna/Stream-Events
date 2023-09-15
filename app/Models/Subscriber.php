@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Subscriber extends Model
 {
@@ -32,10 +32,10 @@ class Subscriber extends Model
     /**
      * Get events for the subscriber.
      * 
-     * @return MorphMany
+     * @return MorphOne
      */
-    public function events(): MorphMany
+    public function events(): MorphOne
     {
-        return $this->morphMany(Event::class, "eventable");
+        return $this->morphOne(Event::class, "eventable");
     }
 }
